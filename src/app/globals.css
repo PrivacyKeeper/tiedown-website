@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  /* TieDown.pro accent, per the build map: burnt orange on dust black. The
+     secondary is a pale rope tan, so the two read as fire and hemp rather
+     than as two unrelated hues. */
+  --ink: #12100e;
+  --ink-raised: #1e1a16;
+  --ink-panel: #29231d;
+  --ink-border: #453a2e;
+
+  --brand: #e2701f;
+  --brand-deep: #b0510e;
+
+  --brand-2: #d8be8f;
+  --brand-2-hover: #ecd6ac;
+
+  --cream: #f4ead9;
+  --muted: #ab9a84;
+  --muted-dim: #7d6f5e;
+}
+
+@theme inline {
+  --color-background: var(--ink);
+  --color-foreground: var(--cream);
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-panel: var(--ink-panel);
+  --color-ink-border: var(--ink-border);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-2: var(--brand-2);
+  --color-brand-2-hover: var(--brand-2-hover);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-muted-dim: var(--muted-dim);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/* Arena backdrop, same approach as the other Rodeo Apps sites: a fixed,
+   softened image behind the content with a gradient wash over it. Swap the
+   files in public/backgrounds/ to change it. */
+.arena-page {
+  --arena-bg-image: none;
+  position: relative;
+  isolation: isolate;
+  background-color: var(--ink);
+}
+
+.arena-page::before {
+  content: "";
+  position: fixed;
+  inset: -4%;
+  z-index: -2;
+  pointer-events: none;
+  background-image: var(--arena-bg-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px) saturate(0.9) contrast(1.05);
+  opacity: 0.5;
+  transform: scale(1.06);
+}
+
+.arena-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(226, 112, 31, 0.15), rgba(18, 16, 14, 0.6) 68%),
+    linear-gradient(160deg, rgba(18, 16, 14, 0.72), rgba(30, 26, 22, 0.9));
+}
+
+.arena-bg-1 {
+  --arena-bg-image: url("/backgrounds/arena-1.jpg");
+}
+
+.arena-bg-2 {
+  --arena-bg-image: url("/backgrounds/arena-2.jpg");
+}
+
+.arena-panel {
+  background: rgba(30, 26, 22, 0.72);
+  border: 1px solid var(--ink-border);
+  border-radius: 18px;
+  backdrop-filter: blur(2px);
+}
+
+/* Long-form prose shared by the rules page and the blog. */
+.prose-arena h2 {
+  color: var(--brand);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-arena h3 {
+  color: var(--brand-2);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-arena p {
+  color: #e2d6c1;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.prose-arena ul,
+.prose-arena ol {
+  color: #e2d6c1;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+}
+
+.prose-arena ul {
+  list-style: disc;
+}
+
+.prose-arena ol {
+  list-style: decimal;
+}
+
+.prose-arena li {
+  margin-bottom: 0.35rem;
+}
+
+.prose-arena a {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.prose-arena strong {
+  color: var(--cream);
+}
+
+/* Association tag used on the rules page. The jerk-down rule and the loop
+   count genuinely differ between the pro and amateur associations, so
+   anything that varies is labelled rather than stated as universal. */
+.assoc-tag {
+  display: inline-block;
+  border: 1px solid var(--ink-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-2);
+  background: rgba(216, 190, 143, 0.08);
+  vertical-align: middle;
+}
+
+/* Segment strip — the run broken into its parts, which is this app's core
+   differentiator per the build map. Used on the landing page. */
+.segment-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 0.5rem;
+}
+
+.segment-cell {
+  border: 1px solid var(--ink-border);
+  border-radius: 12px;
+  background: rgba(30, 26, 22, 0.7);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
